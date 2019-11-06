@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>园丁风采-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+
+<body>
+	<header></header>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/teacher_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center>
+					<h1>园丁风采</h1>
+					<h4>用艺术沟通 让世界和谐</h4>
+				</center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--园丁风采-->
+	<span class="layui-breadcrumb">
+		<a href="index.html">首页</a>
+		<a href="">名师列表</a>
+	</span>
+	<div class="container t-container" id="teacher-list">
+	</div>
+<div class="rows">
+	<center><ul class="pagination" id="mypagination">
+	</ul></center>
+</div>
+<!-- <%@include file="./module/footer.html" %> -->
+<footer></footer>
+	<script type="text/javascript">
+	    var currentPage = 1;
+	    var pageSize = 8;
+	    var path="";
+	   // var path="";
+	    function render() {
+	        $.ajax({
+	            url: "http://48y3pn.natappfree.cc/jsp/teachers/findAllTeacherBSN.action",
+	            data: {
+	              page: currentPage,
+	              limit: pageSize
+	            },
+	            dataType: "json",
+	            success: function (data) {
+	        	console.log(data);
+	                // 将数据渲染到页面
+	                if(data.status == 200){
+	                    var list = data.rows;
+	                    var sum = data.datasize;
+	                    $("#teacher-list").html('<div class="col-lg-12 container-title"><div class="col-lg-12 container-title-div1">老师展示</div></div>');
+	                    for(var i=0;i<list.length;i++){
+	                			$("#teacher-list").append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding:20px 2px;text-align:center">'+
+	        	                '<a href="./teacher-details.html?id='+list[i].id+'"><img class="img-thumbnail" src="http://48y3pn.natappfree.cc'+path+list[i].image+'" alt=""></a>'+
+	        	               	'<div class="stu-font"><p class="english">EXCELLENT TEACHER</p><p>#'+
+	        	               	list[i].id+'教师展示</p><p>'+list[i].name+'</p></div></div>'
+	        	                );     	
+	                    }
+	                    // 调用分页函数.参数:当前所在页, 总页数(用总条数 除以 每页显示多少条,在向上取整), ajax函数
+	                    setPage(currentPage, Math.ceil(sum/pageSize), render);
+	                }
+	            },error:function(){
+	        		$("#teacher-list").append("抱歉,请刷新页面");
+	            }
+	        })
+	    }
+	    render();
+
+	    /**
+	     *
+	     * @param pageCurrent 当前所在页
+	     * @param pageSum 总页数
+	     * @param callback 调用ajax
+	     */
+	    function setPage(pageCurrent, pageSum, callback) {
+	        $("#mypagination").bootstrapPaginator({
+	            //设置版本号
+	            bootstrapMajorVersion: 3,
+	            // 显示第几页
+	            currentPage: pageCurrent,
+	            // 总页数
+	            totalPages: pageSum,
+	            //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+	            onPageClicked: function (event,originalEvent,type,page) {
+	                // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+	                currentPage = page
+	                callback && callback()
+	            }
+	        })
+	    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="layui/layui.all.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <title>注册页</title>
+    <style>
+        *{
+            margin:0;padding: 0;
+        }
+        a{
+            color: black;
+        }
+        h1{
+            text-align: center
+        }
+        body{
+            background-image: url(img/land.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-top: 100px;
+            text-align: center;
+        }
+        #container{
+            padding: 15px;
+            display: inline-block;
+            width: 830px;
+            text-align: center;
+            background-color: rgba(255, 255,255,0.65);
+            border-radius: 5px;
+            margin: auto;
+        }
+        form div{
+        float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>注册</h2>
+        <form class="layui-form" action="">
+            <div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-inline">
+                    <input type="text" id="userphone" name="title" required  lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">11位手机号码</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" id="tpyz">
+                    </div>
+                    <img src="http://ikj8ig.natappfree.cc/img/getImage.action" alt="" id="yztp">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短信验证码</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" id="dxyz">
+                    </div>
+                    <a href="javascript:;" onclick="fsdx()" class="layui-btn layui-btn-xs">发送</a>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码框</label>
+                    <div class="layui-input-inline">
+                    <input type="password" name="title" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" id="userpwd">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input" id="username">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                    <select name="city" id="usergender">
+                        <option value=""></option>
+                        <option value="1" data-gender="1">男</option>
+                        <option value="0" data-gender="0">女</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                   <label class="layui-form-label">国籍</label>
+                    <div class="layui-input-inline">
+                    <select name="city" id="usercountry">
+                        <option value=""></option>
+                        <option value="中国大陆">中国大陆</option>
+                        <option value="中国澳门">中国澳门</option> 
+                        <option value="中国香港">中国香港</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名族</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="userfamily">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">推荐码</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="tjnum" placeholder="选填">
+                </div>
+                </div>
+            </div>
+            <div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所在城市</label>
+                    <div class="layui-input-inline">
+                    <select name="city" id="city_list">
+                        <option value=""></option>
+                    </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出生日期</label>
+                    <div class="layui-input-inline">
+                    <input type="date" name="title" placeholder="请输入出生日期" autocomplete="off" class="layui-input" id="userbirth">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" id="userid">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">18位身份证号</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所在单位</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="usercompany">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家长姓名</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="userparents">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭住址</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="useraddress">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电子邮箱</label>
+                    <div class="layui-input-inline">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" id="useremail">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家长联系电话</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" autocomplete="off" class="layui-input" id="familytel">
+                    </div>
+                </div>
+            </div>
+            <p class="layui-form-item">
+                <p class="layui-input-inline">
+                    <a class="layui-btn" lay-submit lay-filter="formDemo" id="reg">立即提交</a>
+                </p>
+            </p>
+            <p style="width:300px;margin: auto;">
+                <input type="checkbox" lay-skin="primary" checked id="check" title="">
+                <span>我已阅读并接受 <a href="">用户协议</a>和 <a href="">隐私政策</a></span>
+            </p>
+            <table style="clear: both;"></table>
+        </form>
+    </div>
+    <script>
+        layui.use('form', function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+        form.render();
+        })
+         //判断是否有推荐人
+        if(location.search){
+            tjnum.value=location.search.split("=")[1];
+        }
+        // 手机号码格式验证
+            $("#userphone").blur(function(){
+                var user_phone=userphone.value;
+                var reg_phone=/^1[3-8]\d{9}$/i;
+                if(reg_phone.test(user_phone)==false){
+                   layer.msg('手机号码格式错误！', {icon: 5});
+                   userphone.value="";
+                }
+            })
+        //点击重新获取图片验证码
+        $("#yztp").click(function(){
+            tpyz.value="";
+            $("#yztp").attr("src","http://ikj8ig.natappfree.cc/img/getImage.action?"+Math.random());
+            tpyz.value="";
+        })
+        $(document).ready(function(){
+        //获取城市列表
+            axios.get("http://ikj8ig.natappfree.cc/user/getCityAll.action").then(res=>{
+                console.log(res,$("#city_list"));
+                    var city_arr=res.data.obj;
+                    var html="";
+                    for(var item of city_arr){
+                        html+=`<option data-id=${item.id} value="${item.cityName}">${item.cityName}</option>`
+                    }
+                    $("#city_list").append(html);
+                    layui.use('form',function(){
+					var form=layui.form;
+					form.render("select");
+				})                
+            })    
+        })
+        //图片验证码验证
+        $("#tpyz").blur(function(){
+                var yzm=tpyz.value;
+                axios.post("http://ikj8ig.natappfree.cc/img/getCode.action",`imgCode=${yzm}`).then(res=>{
+                    console.log(res);
+                    if(res.data.code==200){
+                         layer.msg('验证成功！', {icon: 6});
+                    }else{
+                        layer.msg('验证失败！请点击图片重新验证', {icon: 5});
+                        tpyz.value="";
+                    }
+                })
+            })
+        // //短信验证
+            //发送短信
+            function fsdx(){
+                    var phonenamber=userphone.value;
+                    var phone=parseInt(phonenamber);
+                    console.log(typeof(phone),phone);
+                    axios.post("http://ikj8ig.natappfree.cc/thirdParty/sendSms.action",`phone=${phone}`).then(res=>{
+                        console.log(res,111);
+                        if(res.data.code==200){
+                            layer.msg('短信发送成功！', {icon: 6});
+                        }else{
+                            layer.msg('短信发送失败！', {icon: 5});
+                        }
+                    })
+                }
+            //验证短信
+            $("#dxyz").blur(function(){
+                    var dxyznumber=dxyz.value;
+                    axios.post("http://ikj8ig.natappfree.cc/login/isSmsCode.action",`code=${dxyznumber}&phone=${userphone.value}`).then(res=>{
+                        console.log(res);
+                        if(res.data.code==200){
+                            layer.msg('短信验证成功！', {icon: 6});
+                        }else{
+                            layer.msg('短信验证失败！', {icon: 5});
+                            dxyz.value="";
+                        }
+                    })
+                })
+            //身份证号码验证
+            $("#userid").blur(function(){
+                var p = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+                var userID=userid.value;
+                if(p.test(userID)==false){
+                    layer.msg('身份证号码格式错误！', {icon: 5});
+                   userid.value="";
+                }
+            })    
+        
+            //勾选用户协议判定
+            $("#check").click(function(){
+                if($("#check").prop("checked")==true){
+                    $("#reg").css("background-color","");
+                    $("#reg").css("border-color","");
+                }else{
+                    $("#reg").css("background-color","#7F8080");
+                    $("#reg").css("border-color","#7F8080");
+                }
+                })
+       
+        // 发送注册请求
+        $("#reg").click(function(){
+           var user_phone=userphone.value;
+           var user_pwd=userpwd.value;
+           var user_name=username.value;
+           var user_gender=$("#usergender option:selected").data("gender");;
+           var user_country=usercountry.value;
+           var user_family=userfamily.value;
+           var user_city=$("#city_list option:selected").data("id");
+           var user_birth=userbirth.value;
+           var user_id=userid.value;
+           var user_company=usercompany.value;
+           var user_parents=userparents.value;
+           var user_address=useraddress.value;
+           var user_email=useremail.value;
+           var family_tel=familytel.value;
+           var dxyz_number=dxyz.value;
+           var tj_num=tjnum.value;
+            if($("#check").prop("checked")==false){
+                layer.msg('请先确认用户协议！！！！', {icon: 5});
+            }else{
+                if(user_phone!=""&&user_pwd!=""&&user_name!=""&&user_id!=""&&dxyz_number!=""){
+                    // 城市ID需要发送请求前数据解析
+                    axios.post("http://ikj8ig.natappfree.cc/user/addUserLog.action",`phone=${user_phone}&password=${user_pwd}&name=${user_name}&gender=${user_gender}&nationality=${user_country}&nation=${user_family}&cityId=${user_city}&birthday=${user_birth}&idCard=${user_id}&unit=${user_company}&parentName=${user_parents}&familyAddress=${user_address}&mailbox=${user_email}&familyPhone=${family_tel}&code=${dxyz_number}&recommender=&${tj_num}`).then(res=>{
+                        console.log(res);
+                        if(res.data.code==200){
+                            layer.msg('注册成功成功！', {icon: 6});
+                            window.location.href="http://ikj8ig.natappfree.cc/login.html"
+                        }
+                    });
+                }else{
+                    layer.msg('必填项不能为空！！！！', {icon: 5});
+                }
+            }
+        })
+ </script>
+</body>
+</html>

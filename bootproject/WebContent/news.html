@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>新闻动态-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/news.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+
+<body>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/expert_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center></center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--新闻公告-->
+	<div class="container" id="news-list">
+	
+	</div>
+<div class="rows">
+	<center><ul class="pagination" id="mypagination">
+	</ul></center>
+</div>
+
+
+<footer></footer>
+	<script type="text/javascript">
+	/**上传服务器时,path需变动*/
+	 var currentPage = 1;
+	    var pageSize = 8;
+	    var path="";
+	    //var path="";
+	    function render() {
+	        $.ajax({
+	            url: "http://48y3pn.natappfree.cc/jsp/newss/findAllNews.action",
+	            data: {
+	              page: currentPage,
+	              limit: pageSize
+	            },
+	            dataType: "json",
+	            success: function (data) {
+	        	console.log(data);
+	                // 将数据渲染到页面
+	                if(data.status == 200){
+	                    var list = data.rows;
+	                    var sum = data.datasize;
+	                    $("#news-list").html('<div class="col-lg-12 container-title"><div class="col-lg-12 container-title-div1" style="margin-left:15%;">新闻动态</div></div>');
+	                    for(var i=0;i<list.length;i++){
+	                		$("#news-list").append('<div class="news"><div class="news1">'+
+	                		'<a href="news-details.html?id='+list[i].id+'"><img src="http://48y3pn.natappfree.cc'+path+list[i].image+'" width="100%"></a>'+
+	                		'</div><div class="news2">'+
+	                		list[i].title+'<p>'+list[i].date+'</p><p>'+list[i].introduction+'</p>'+
+	                		'<a href="./news-details.html?id='+list[i].id+'"><span>查看详情</span></a></div></div>	');
+	                    }
+	                    // 调用分页函数.参数:当前所在页, 总页数(用总条数 除以 每页显示多少条,在向上取整), ajax函数
+	                    setPage(currentPage, Math.ceil(sum/pageSize), render);
+	                }
+	            },error:function(){
+	        		$("#news-list").append("抱歉,请刷新页面");
+	            }
+	        })
+	    }
+	    render();
+
+	    /**
+	     *
+	     * @param pageCurrent 当前所在页
+	     * @param pageSum 总页数
+	     * @param callback 调用ajax
+	     */
+	    function setPage(pageCurrent, pageSum, callback) {
+	        $("#mypagination").bootstrapPaginator({
+	            //设置版本号
+	            bootstrapMajorVersion: 3,
+	            // 显示第几页
+	            currentPage: pageCurrent,
+	            // 总页数
+	            totalPages: pageSum,
+	            //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+	            onPageClicked: function (event,originalEvent,type,page) {
+	                // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+	                currentPage = page
+	                callback && callback()
+	            }
+	        })
+	    }
+    </script>
+</body>
+</html>

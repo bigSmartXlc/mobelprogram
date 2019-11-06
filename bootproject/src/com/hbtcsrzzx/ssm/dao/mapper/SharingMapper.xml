@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbtcsrzzx.ssm.dao.mapper.SharingMapper" >
+  <resultMap id="BaseResultMap" type="com.hbtcsrzzx.ssm.po.Sharing" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="institutional_nature" property="institutionalNature" jdbcType="VARCHAR" />
+    <result column="salesman_commission" property="salesmanCommission" jdbcType="INTEGER" />
+    <result column="institutional_commission" property="institutionalCommission" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, institutional_nature, salesman_commission, institutional_commission, state, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbtcsrzzx.ssm.po.SharingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sharing
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sharing
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbtcsrzzx.ssm.po.SharingExample" >
+    delete from sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbtcsrzzx.ssm.po.Sharing" >
+    insert into sharing (id, institutional_nature, salesman_commission, 
+      institutional_commission, state, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{institutionalNature,jdbcType=VARCHAR}, #{salesmanCommission,jdbcType=INTEGER}, 
+      #{institutionalCommission,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbtcsrzzx.ssm.po.Sharing" >
+    insert into sharing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="institutionalNature != null" >
+        institutional_nature,
+      </if>
+      <if test="salesmanCommission != null" >
+        salesman_commission,
+      </if>
+      <if test="institutionalCommission != null" >
+        institutional_commission,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="institutionalNature != null" >
+        #{institutionalNature,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanCommission != null" >
+        #{salesmanCommission,jdbcType=INTEGER},
+      </if>
+      <if test="institutionalCommission != null" >
+        #{institutionalCommission,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbtcsrzzx.ssm.po.SharingExample" resultType="java.lang.Integer" >
+    select count(*) from sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sharing
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.institutionalNature != null" >
+        institutional_nature = #{record.institutionalNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesmanCommission != null" >
+        salesman_commission = #{record.salesmanCommission,jdbcType=INTEGER},
+      </if>
+      <if test="record.institutionalCommission != null" >
+        institutional_commission = #{record.institutionalCommission,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sharing
+    set id = #{record.id,jdbcType=INTEGER},
+      institutional_nature = #{record.institutionalNature,jdbcType=VARCHAR},
+      salesman_commission = #{record.salesmanCommission,jdbcType=INTEGER},
+      institutional_commission = #{record.institutionalCommission,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbtcsrzzx.ssm.po.Sharing" >
+    update sharing
+    <set >
+      <if test="institutionalNature != null" >
+        institutional_nature = #{institutionalNature,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanCommission != null" >
+        salesman_commission = #{salesmanCommission,jdbcType=INTEGER},
+      </if>
+      <if test="institutionalCommission != null" >
+        institutional_commission = #{institutionalCommission,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbtcsrzzx.ssm.po.Sharing" >
+    update sharing
+    set institutional_nature = #{institutionalNature,jdbcType=VARCHAR},
+      salesman_commission = #{salesmanCommission,jdbcType=INTEGER},
+      institutional_commission = #{institutionalCommission,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

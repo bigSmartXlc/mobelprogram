@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录-全国艺术特长生测评认证湖北省中心</title>
+</head>
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<link rel="stylesheet" href="css/land.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<body style="height:100%">
+    <div class="return">
+        <button class="mynav-btn" onclick="javascript:history.back(-1);">返回</button>
+    </div>
+    <div class="background">
+        <div class="landing">
+            <div class="landa">
+                <img src="img/land_06_03.png" />
+            </div>
+            <div class="lands">
+            <form οnsubmit="return false;">
+                <p>
+                    <input type="text" name="phone" class="form-handset" placeholder="请输入手机号" />
+                </p>
+                <p>
+                    <input type="text"  name="password" class="form-password" placeholder="请输入密码" />
+                </p>
+                <p class="password">
+                    <a href="">忘记密码?</a>
+                </p>
+                <p>
+                    <input type="button" class="button" value="登陆" id="submit-login">
+                </p>
+                <p class="register">
+                    <a href="regBoot.html">没有账号？马上<i>注册</i></a>
+                </p>
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <center style="padding-top: 20px; padding-bottom:20px;">
+            <p style="margin: 0">
+                联系方式：400-06648516 &nbsp&nbsp<a href="#" style="color: yellow;">法人信息</a>&nbsp&nbsp<a
+                    href="#" style="color: yellow;">网站地图</a>
+            </p>
+            <p style="margin: 0">Copyright&nbsp 2019 All Reserved&nbsp&nbsp备案号：鄂ICP备15021848号</p>
+            <p style="margin: 0">版权所有&nbsp&nbsp|&nbsp&nbsp全国艺术特长生测评认证中心&nbsp&nbsp&nbsp湖北省中心</p>
+        </center>
+    </div>
+    <script>
+        $("#submit-login").click(function(){
+            var phone=$(".form-handset").val();
+            var password=$(".form-password").val();
+            axios.defaults.withCredentials = true;
+            axios.post("http://48y3pn.natappfree.cc/login/userLogin.action",`phone=${phone}&password=${password}`).then(res=>{
+                if(res.data.code==200){
+                    layer.msg('登陆成功！前往个人中心', {icon:6});
+                    window.localStorage.setItem("name",res.data.obj);
+                    setTimeout(function(){
+                        window.location.href="user/personal.html";
+                    },1500)
+                }else{
+                    layer.msg('登陆失败！请重试', {icon:5});
+                }
+            })
+        })
+    </script>
+</body>
+</html>

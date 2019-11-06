@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户个人中心</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../static/layui/layui.all.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/fmain.js"></script>
+    <script src="../js/personal(1).js"></script>
+    <script type="text/javascript" src="http://g.alicdn.com/sj/dpl/1.5.1/js/sui.min.js"></script>
+    <script type="text/javascript" src="../js/orcode/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="../js/orcode/qrcode.js"></script>
+    <script type="text/javascript" src="../js/orcode/utf.js"></script>
+    <link href="http://g.alicdn.com/sj/dpl/1.5.1/css/sui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/personal.css"> 
+</head>
+<body class="container">
+<div class="row">
+    <nav class="navbar-fixed-top">
+            <div class="mytop container" id="mytop " style="background-color: #009688">
+                <div style="margin-left: -80px;">
+                    <a href="../index.html" class="nav-brand mynav-brand">
+                        <img class="inline-block" src="../img/logo.png"	style="height:75px;"> 
+                    </a>
+                    <div id="shownav"><img src="../img/caidan.png" alt=""></div>
+                </div>
+            </div>
+            <div class="menulist">
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                        <li class="layui-nav-item layui-nav-itemed"><img src="../img/touxiang.jpg" alt=""><span id="name"></span></li>
+                        <li class="layui-nav-item layui-nav-itemed" id="btnli"><button class="mynav-btn" onclick="login();" style="margin-top: 0">登录</button></li>
+                        <li class="layui-nav-item layui-nav-itemed"><a href="../index.html">首页</a></li>
+                        <li class="layui-nav-item layui-nav-itemed"><a href="../user/personal.html">个人中心</a></li>
+                        <li class="layui-nav-item">
+                        <a href="javascript:;">测评中心</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="../center.html">中心列表</a></dd>
+                            <dd><a href="../expert.html">专家团队</a></dd>
+                        </dl>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed"><a href="../institution.html">机构一览</a></li>
+                        <li class="layui-nav-item">
+                        <a href="javascript:;">艺海颉英</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="../teacher.html">园丁风采</a></dd>
+                            <dd><a href="../student.html">明日之星</a></dd>
+                        </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                        <a href="javascript:;">新闻公告</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="../news.html">新闻动态</a></dd>
+                            <dd><a href="../notice.html">通知公告</a></dd>
+                        </dl>
+                    </li>
+                        <li class="layui-nav-item"><a href="../contact.html">联系我们</a></li>
+                        <li class="layui-nav-item"><a href="../" id="reg_reset">注销登陆</a></li>
+                </ul>
+            </div>
+    </nav>
+    <div class="carousel slide"
+    style="background: url(../img/certificate_01.jpg);width: 100%;">
+    </div>
+    <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+        <div id="container">
+            <div class="silder" style="min-height: 72vh;">
+                <ul class="slide_menu">
+                    <li><a href="javascript:;"><span>个人资料</span></a></li>
+                    <!-- <li><a href="javascript:;"><span>考试信息</span></a></li> -->
+                    <li><a href="javascript:;"><span id="tcxx">提成信息</span></a></li>
+                    <li><a href="javascript:;"><span>机构审核</span></a></li>
+                    <li><a href="javascript:;"><span>测评信息</span></a></li>
+                    <!-- <li><a href="javascript:;"><span>专属推广码</span></a></li> -->
+                </ul>
+            </div>
+            <div class="main">
+                <ul class="main_cont">
+                    <li> 
+                        <p class="fytital">个人资料</p>
+                        <div class="between row">
+                          <div id="grtx" class="col-sm-6 col-xs-12">
+                              <img src="../img/touxiang.jpg" alt="头像"><br>
+                              <a href="../javascript:void(0);" class="sui-btn btn-small btn-primary" id="changetx">上传/修改头像</a>
+                          </div>
+                          <div class="col-sm-6 col-xs-12">
+                              <table id="userinfo">
+                                  <tr>
+                                      <td>姓名：</td>
+                                      <td id="u_name"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>手机号：</td>
+                                      <td id="u_phone"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>性别：</td>
+                                      <td id="u_gender"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>国籍：</td>
+                                      <td id="u_nationality"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>名族：</td>
+                                      <td id="u_nation"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>出生日期：</td>
+                                      <td id="u_birthday"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>身份证号：</td>
+                                      <td id="u_idCard"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>所在单位：</td>
+                                      <td id="u_unit"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>家长姓名：</td>
+                                      <td id="u_parentName"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>家庭住址：</td>
+                                      <td id="u_familyAddress"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>电子邮箱：</td>
+                                      <td id="u_mailbox"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>家庭联系电话：</td>
+                                      <td id="u_familyPhone"></td>
+                                  </tr>
+                                  <tr>
+                                      <td>所在地：</td>
+                                      <td id="u_city"></td>
+                                  </tr>
+                                  <tr style="border: 1px solid red;">
+                                    <td style="font-size:15px;font-weight:bolder;">您的个人推荐码：</td>
+                                    <td id="u_ownRecommendationCode" style="color:red;font-size:20px;font-weight:bolder;"></td>
+                                </tr>
+                              </table>
+                              <br>
+                              <br>
+                              <br>
+                              <a href="javascript:;" class="sui-btn btn-xlarge btn-success" id="changegrxx">修改个人信息</a>
+                          </div>
+                        </div>
+                    </li>
+                    <!-- <li style="display:none;"> 
+                        <p class="fytital">考试信息</p>
+                        <div class="am-g">
+                            <div class="am-u-sm-12" id="listTag">
+                            </div>
+                        </div>
+                    </li> -->
+                    <li style="display:none;">
+                        <p class="fytital">提成信息</p>
+                        <ul>
+                            <li>
+                                <span>提现状态</span>
+                                <select id="tx_status">
+                                    <option value="全部">全部</option>
+                                    <option value="未提现">未提现</option>
+                                    <option value="提现中">提现中</option>
+                                    <option value="已提现">已提现</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a href="../javascript:void(0);" class="sui-btn btn-small btn-primary" id="search">搜索</a>
+                            </li>
+                        </ul>
+                        <div  class="table-responsive">
+                            <table id="tcxxtable" class="sui-table table-vzebra table">
+                                <thead>
+                                    <tr>
+                                        <th>提现id</th>
+                                        <th>考生姓名</th>
+                                        <th>测评类容</th>
+                                        <th>提成等级</th>
+                                        <th>提成比例</th>
+                                        <th>报考费用(分)</th>
+                                        <th>提成费用</th>
+                                        <th>提现状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pagelist">
+                                </tbody>
+                            </table>        
+                        </div>
+                        <div class="sui-pagination pagination-large ">
+                            <ul id="page-turn">
+                            </ul>
+                        </div>
+                        <div>
+                            <span>当前可提现金额为:</span><span id="money"></span><a href="../javascript:void(0);" class="sui-btn btn-xlarge btn-primary" id="tx_btn">发起提现申请</a>
+                        </div>
+                    </li>
+                    <li style="display:none;">
+                      <h3  id="teststatus">您已经提交过审核，目前审核状态为:<span></span></h3>
+                      <div class="between">
+                          <p class="fytital">机构审核</p>
+                          <form class="layui-form" id="jgsh">
+                              <div class="layui-form-item">
+                                  <label class="layui-form-label">机构法人</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="legalPerson" required lay-verify="required" autocomplete="off" class="layui-input">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">法人电话</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="legalPersonPhone" required lay-verify="required|phone" autocomplete="off" class="layui-input">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">机构名称</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="subName" required lay-verify="required" autocomplete="off" class="layui-input">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">法人身份证号</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="legalPersonId" required lay-verify="required|identity" autocomplete="off" class="layui-input" placeholder="法人身份证号">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">负责人</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="personInCharge" required lay-verify="required" autocomplete="off" class="layui-input">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">负责人联系电话</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="personInChargePhone" required lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="负责人联系电话">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">短信验证</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="testcode" required lay-verify="required|number" autocomplete="off" class="layui-input">
+                                  </div>
+                                  <div class="layui-form-mid layui-word-aux">
+                                      <button type="button" class="layui-btn layui-btn-xs" id="person_num">发送</button>
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">统一社会信用代码</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="unifiedCreditCode" required lay-verify="required" autocomplete="off" class="layui-input" placeholder="统一社会信用代码">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">负责人身份证号</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="personInChargeId" required lay-verify="required|identity" autocomplete="off" class="layui-input" placeholder="负责人身份证号">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">法人身份证正面</label>
+                                  <div class="layui-input-inline">
+                                    <input type="file" name="legalPersonIdImgJust1" required lay-verify="required" autocomplete="off" class="layui-input" id="Picup" placeholder="法人身份证正面">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">法人身份证反面</label>
+                                  <div class="layui-input-inline">
+                                    <input type="file" name="legalPersonIdImgBack1" required lay-verify="required" autocomplete="off" class="layui-input" id="Picdown" placeholder="法人身份证反面">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <div class="layui-input-inline">
+                                      <input type="hidden" name="legalPersonIdImgJust" required lay-verify="required" autocomplete="off" class="layui-input" id="Picup">
+                                  </div>
+                                  </div>
+                                  <div class="layui-form-item">
+                                      <div class="layui-input-inline">
+                                          <input type="hidden" name="legalPersonIdImgBack" required lay-verify="required" autocomplete="off" class="layui-input" id="Picdown">
+                                      </div>
+                                  </div>
+                                <div class="layui-form-item">
+                                  <div class="layui-input-block">
+                                      <button class="layui-btn" lay-submit lay-filter="formDemo" id="submit">立即提交</button>
+                                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                  </div>
+                                  </div>
+                          </form>
+                          <div id="idcard">
+                              <img src="../img/touxiang.jpg" alt="" id="id-up" title="身份证正面">
+                              <img src="../img/touxiang.jpg" alt="" id="id-down" title="身份证反面">
+                          </div>
+                      </div>
+                    </li>
+                    <li style="display:none;" class="container">
+                        <p class="fytital">测评信息</p>
+                        <form class="layui-form row" action="" id="form_select">
+                            <div class="layui-input-inline col-sm-3 col-xs-6">
+                                <input type="text" name="cityNameOrregion" placeholder="城市(区域)" autocomplete="off" class="layui-input">
+                            </div>
+                            <select class="col-sm-3 col-xs-6" name="category" lay-verify="">
+                                <option value="">报名分类</option>
+                            </select>  
+                            <div class="layui-input-inline col-sm-3 col-xs-6">
+                                <input type="text" name="subject"  placeholder="报名科目" autocomplete="off" class="layui-input">
+                            </div>  
+                            <div class="layui-input-inline col-sm-3 col-xs-6">
+                                <input type="date" name="evaluationDate"  placeholder="测评日期" autocomplete="off" class="layui-input">
+                            </div>
+                        </form>
+                        <a href="javascript:;" class="layui-btn  layui-btn-normal" id="search_btn">搜索</a>
+                        <table id="demo" lay-filter="test"></table>
+                    </li>
+                    <!-- <li style="display: none;">
+                      <p class="fytital">专属推广码</p>
+                      <p>此为本站为您生成的专属推荐码，可用于您向他人推荐注册本站获取奖励</p>
+                      <div id="qrcodeCanvas"></div>
+                    </li> -->
+                    <li style="display:none;">
+                        <div id="changelist">
+                            <p class="fytital">修改个人资料</p>
+                            <form class="layui-form" style="text-align: center;">
+                                <div style="display: inline-block;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">姓名</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" placeholder="请输入真实姓名" autocomplete="off" class="layui-input" id="username" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">性别</label>
+                                        <div class="layui-input-inline">
+                                        <select id="usergender">
+                                            <option value=""></option>
+                                            <option value="1" data-gender="1">男</option>
+                                            <option value="0" data-gender="0">女</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                      <label class="layui-form-label">国籍</label>
+                                        <div class="layui-input-inline">
+                                        <select id="usercountry">
+                                            <option value=""></option>
+                                            <option value="中国大陆">中国大陆</option>
+                                            <option value="中国澳门">中国澳门</option> 
+                                            <option value="中国香港">中国香港</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">名族</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="userfamily">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">所在城市</label>
+                                        <div class="layui-input-inline">
+                                        <select id="city_list">
+                                            <option value=""></option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">出生日期</label>
+                                        <div class="layui-input-inline">
+                                        <input type="date" placeholder="请输入出生日期" autocomplete="off" class="layui-input" id="userbirth">
+                                        </div>
+                                    </div>
+                                </div>    
+                                <div style="display: inline-block;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">身份证号</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="userid">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">所在单位</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="usercompany">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">家长姓名</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="userparents">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">家庭住址</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="useraddress">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">电子邮箱</label>
+                                        <div class="layui-input-inline">
+                                        <input type="text" autocomplete="off" class="layui-input" id="useremail">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">家长电话</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" autocomplete="off" class="layui-input" id="familytel" maxlength="11">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="layui-form-item">
+                                    <p class="layui-input-inline">
+                                        <a class="layui-btn" lay-submit lay-filter="formDemo" id="amendment">立即修改</a>
+                                    </p>
+                                </p>
+                                <table style="clear: both;"></table>
+                            </form>
+                          </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>    
+<footer style="background: #8e7741; color: #fff;height: 15vh;">
+    <div class="container">
+        <center style="padding-top: 20px; padding-bottom: 20px;">
+            <p style="margin: 0">
+                联系方式：027-88617866 &nbsp&nbsp<a href="../#" style="color: yellow;">法人信息</a>&nbsp&nbsp<a
+                    href="../javascript:void(0)" onclick="sm_show()" style="color: yellow;">网站说明</a>
+            </p>
+            <p style="margin: 0">Copyright&nbsp 2019 All
+                Reserved&nbsp&nbsp备案号：鄂ICP备15021848号</p>
+            <p style="margin: 0">版权所有&nbsp&nbsp|&nbsp&nbsp全国艺术特长生测评认证中心&nbsp&nbsp&nbsp湖北省中心</p>
+        </center>
+    </div>
+</footer>
+<script>
+        layui.use('element', function(){
+        var element = layui.element;
+            element.init();
+        });
+        function login(){
+        location.href="../login.html"
+        }
+        $("#shownav").click(function(){
+            if($(".menulist").css("width")!="0px"){
+                $(".menulist").css("width","0px")
+            }else{
+                $(".menulist").css("width","200px")
+            }
+            })
+
+            var name=localStorage.getItem("name");
+            if(name!="null"){
+                $("#btnli").html( '<a href="../user/personal.html" style="color:#fff;">欢迎!'+name+'</a>');
+            }
+            $("#reg_reset").on("click",function(){
+                localStorage.clear();
+                $("#btnli").html( `<button class="mynav-btn" onclick="login();"  style="margin-top: 0">登录</button>`);
+                axios.post("/user/logout.action").then(res=>{
+                    if(res.data.code==200){
+                        layer.msg('注销成功！', {icon: 6});
+                        setTimeout(function(){
+                            window.location.reload();
+                        },1500)
+                    }
+                })
+            })
+</script>
+</body>
+</html>

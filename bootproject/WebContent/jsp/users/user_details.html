@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+    <legend><span id="name"></span></legend>
+</fieldset>
+<div class="layui-collapse" lay-accordion="" id="start">
+   <!-- <div class="layui-colla-item" id="start">
+       &lt;!&ndash; <h2 class="layui-colla-title">文豪</h2>
+        <div class="layui-colla-content layui-show">
+
+            <div class="layui-collapse" lay-accordion="">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">唐代</h2>
+                    <div class="layui-colla-content layui-show">
+
+                        <div class="layui-collapse" lay-accordion="">
+                            <div class="layui-colla-item">
+                                <h2 class="layui-colla-title">杜甫</h2>
+                                <div class="layui-colla-content layui-show">
+                                    伟大的诗人
+                                </div>
+                            </div>
+                            <div class="layui-colla-item">
+                                <h2 class="layui-colla-title">李白</h2>
+                                <div class="layui-colla-content">
+                                    <p>据说是韩国人</p>
+                                </div>
+                            </div>
+                            <div class="layui-colla-item">
+                                <h2 class="layui-colla-title">王勃</h2>
+                                <div class="layui-colla-content">
+                                    <p>千古绝唱《滕王阁序》</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">宋代</h2>
+                    <div class="layui-colla-content">
+                        <p>比如苏轼、李清照</p>
+                    </div>
+                </div>
+
+
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">当代</h2>
+                    <div class="layui-colla-content">
+                        <p>比如贤心</p>
+                    </div>
+                </div>
+            </div>
+        </div>&ndash;&gt;
+    </div>-->
+
+</div>
+
+<br>
+
+<script src="../../static/js/jquery.min.js" type="text/javascript"
+        charset="utf-8"></script>
+<script src="../../static/layui/layui.all.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['element', 'layer'], function(){
+        var element = layui.element;
+        var layer = layui.layer;
+
+        //监听折叠
+        element.on('collapse(test)', function(data){
+            layer.msg('展开状态：'+ data.show);
+        });
+        //获取后台用户id
+        var url = location.href;
+        var userId = url.substring(url.lastIndexOf('?')+8);
+        //alert(userId);
+        $.ajax({
+
+            async:false,
+            type:"get",
+            url:"../backstageUsers/findBackstageUserById.action",
+            data:{"id":userId},
+            datatype: 'json',
+            success:function (response) {
+              var user =   response.obj;
+
+                var str = '';
+                for (var i = 0 ; i<user.backstageRoles.length; i++){
+                    str+=' <div class="layui-colla-item">' +
+                        ' <h2 class="layui-colla-title">'+user.backstageRoles[i].roleDesc+'</h2></div>';
+
+                }
+
+                $('#start').html(str);
+
+                $('#name').html(user.name);
+                //刷新dom元素
+                element.render()
+
+            }
+        });
+
+
+
+    });
+</script>
+
+</body>
+</html>

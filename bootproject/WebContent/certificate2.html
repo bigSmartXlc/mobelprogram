@@ -1,0 +1,87 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>证书查询-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cartificate.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+
+<body>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/certificate_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-enroll"></div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--证书查询-->
+
+	<div class="certificate" style="padding-top: 270px;">
+		<div class="certificate1">
+			<div class="certificate2">
+				<img src="img/certificate1_03.jpg">
+			</div>
+			<div class="certificate3">
+				<p>姓 名：刘大锤</p>
+				<p>性 别:男</p>
+				<p>出生年月：1998.08.02</p>
+				<p>证件号：6485261256612561561</p>
+				<p>身份证：6465651265165351</p>
+			</div>
+		</div>
+		<div class="certificate1" style="text-align: right; font-size: 16px">2019年02月16日</div>
+	</div>
+
+
+
+
+
+	<footer></footer>
+
+	<script type="text/javascript">
+	$(window).on('load', function() {
+	    $(".mynav_a").click(function() {
+		var arr = document.getElementsByClassName("mynav_a");
+		for (var i = 0; i < arr.length; i++) {
+		    var tmp = arr[i].getAttribute("data-toggle");
+		    if (tmp !== null && tmp !== 'undefined' && tmp != this) {
+			$(arr[i]).next().collapse('hide');
+		    }
+		}
+	    });
+	    $(window).scroll(function() {
+		var height = $("#mytop").offset().top + $("#mytop").height();
+		if (height >= $("#myCarousel").height()) {
+		    $("#mytop").css("background-color", "rgba(0,0,0,0.5)");
+		} else {
+		    $("#mytop").css("background-color", "rgba(0,0,0,0)")
+		}
+	    });
+	});
+    </script>
+</body>
+</html>

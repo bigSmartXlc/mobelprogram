@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../static/layui/layui.all.js"></script>
+</head>
+<script>
+</script>
+<body>
+        <ul class="layui-nav" lay-filter="">
+                <li class="layui-nav-item"><a href="">最新活动</a></li>
+                <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+                <li class="layui-nav-item"><a href="">大数据</a></li>
+                <li class="layui-nav-item">
+                  <a href="javascript:;">解决方案</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="">移动模块</a></dd>
+                    <dd><a href="">后台模版</a></dd>
+                    <dd><a href="">电商平台</a></dd>
+                  </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">社区</a></li>
+              </ul>
+    <ul class="layui-nav layui-nav-tree layui-bg-cyan" lay-filter="test">
+    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+        <li class="layui-nav-item layui-nav-itemed">
+        <a href="javascript:;">默认展开</a>
+        <dl class="layui-nav-child">
+            <dd><a href="javascript:;">选项1</a></dd>
+            <dd><a href="javascript:;">选项2</a></dd>
+            <dd><a href="">跳转</a></dd>
+        </dl>
+        </li>
+        <li class="layui-nav-item">
+        <a href="javascript:;">解决方案</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">产品</a></li>
+        <li class="layui-nav-item"><a href="">大数据</a></li>
+    </ul>
+    <script>
+        layui.use('element', function(){
+         var element = layui.element;
+        element.init();
+});
+    </script>
+</body>
+</html>

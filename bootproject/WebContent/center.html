@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>中心列表-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/center.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="static/layui/layui.all.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+
+<body>
+	<div id="div1">
+		<a href="./enroll.html"> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<!-- <%@include file="./module/menu.html" %> -->
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/abulation_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center>
+					<h1>圆梦中华艺术之星</h1>
+					<h4>全国艺术特长生湖北省第15届</h4>
+					<a href=""
+						style="width: 180px; height: 50px; margin-top: 40px; display: block; border: 1px solid #fff; margin: 0 auto; color: #FFF; line-height: 50px;">立即报名</a>
+				</center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--中心列表-->
+
+	<div class="tabulation">
+		<div class="tabulation1">
+			<div class="tabulation2">
+				中心列表
+				<p>CORE LIST</p>
+			</div>
+			<div class="tabulation3" id="center-list">
+				    <!-- <a href="">湖北中心</a> <a href="">武汉市中心中</a> <a
+					href="">黄石市中心 </a> <a href="">十堰市</a> -->
+			</div>
+		</div>
+
+		<div class="tabulation01" id="center-details">
+		</div>
+	</div>
+
+	<footer></footer>
+	<script type="text/javascript">
+	$(function(){
+	    $.ajax({
+		type : 'POST',
+		url :'http://48y3pn.natappfree.cc/jsp/centers/getAllCenter.action',
+		data : {},
+		dataType : 'json',
+		success : function(data){
+		    if(data.code === 200){
+			    console.log(data);
+				var list = data.rows;
+				for(var i=0;i<list.length;i++){
+				    if(i==0){
+						$("#center-details").append(list[0].context);
+				    }
+				    $("#center-list").append('<a href="javacript:void(0);" onclick="showCenter('+list[i].id+')">'+list[i].name+'</a>');
+				}
+		    }
+		},
+		error:function(){}
+	    });
+})
+	function showCenter(id){
+	    $.ajax({
+		type : 'POST',
+		url :'http://48y3pn.natappfree.cc/jsp/centers/findCenterById.action',
+		data : {id:id},
+		dataType : 'json',
+		success : function(data){
+		    var obj = data.rows;
+		    if(data.code == 200){
+				$("#center-details").html(obj.context);
+		    }
+		},error:function(){ }
+	  });
+	}
+	
+    </script>
+</body>
+</html>

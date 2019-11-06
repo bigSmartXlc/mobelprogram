@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd
+			    http://www.springframework.org/schema/aop
+			    http://www.springframework.org/schema/aop/spring-aop.xsd
+			    http://www.springframework.org/schema/tx
+			    http://www.springframework.org/schema/tx/spring-tx.xsd
+			    http://www.springframework.org/schema/mvc
+			    http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+
+
+<!-- 用户管理 -->
+	<bean id="userService" class="com.hbtcsrzzx.ssm.service.impl.UserServiceImpl" />
+	<bean id="newsService" class="com.hbtcsrzzx.ssm.service.impl.NewsServiceImpl" />
+	<bean id="noticeService" class="com.hbtcsrzzx.ssm.service.impl.NoticeServiceImpl" />
+	<bean id="adminService" class="com.hbtcsrzzx.ssm.service.impl.AdminServiceImpl" />
+	<bean id="categoryService" class="com.hbtcsrzzx.ssm.service.impl.CategoryServiceImpl" />
+	<bean id="subjectService" class="com.hbtcsrzzx.ssm.service.impl.SubjectServiceImpl" />
+	<bean id="centerService" class="com.hbtcsrzzx.ssm.service.impl.CenterServiceImpl" />
+	<bean id="expertService" class="com.hbtcsrzzx.ssm.service.impl.ExpertServiceImpl" />
+	<bean id="teacherService" class="com.hbtcsrzzx.ssm.service.impl.TeacherServiceImpl" />
+	<bean id="institutionService" class="com.hbtcsrzzx.ssm.service.impl.InstitutionServiceImpl" />
+	<bean id="starService" class="com.hbtcsrzzx.ssm.service.impl.StarServiceImpl" />
+	<bean id="syslogService" class="com.hbtcsrzzx.ssm.service.impl.SyslogServiceImpl" />
+	<bean id="menuService" class="com.hbtcsrzzx.ssm.service.impl.MenuServiceImpl" />
+	<bean id="cityService" class="com.hbtcsrzzx.ssm.service.impl.CityServiceImpl" />
+	<bean id="gUserService" class="com.hbtcsrzzx.ssm.service.impl.GUserServiceImpl" />
+	<bean id="evaluationTimeService" class="com.hbtcsrzzx.ssm.service.impl.EvaluationTimeServiceImpl" />
+    <bean id="levelService" class="com.hbtcsrzzx.ssm.service.impl.LevelServiceimpl" />
+    <bean id="costService" class="com.hbtcsrzzx.ssm.service.impl.CostServiceImpl" />
+    <bean id="evaluationDateService" class="com.hbtcsrzzx.ssm.service.impl.EvaluationDateServiceImpl" />
+    <bean id="userLogService" class="com.hbtcsrzzx.ssm.service.impl.UserLogServiceImpl" />
+     <context:component-scan base-package="com.hbtcsrzzx.ssm.service"></context:component-scan>
+</beans>

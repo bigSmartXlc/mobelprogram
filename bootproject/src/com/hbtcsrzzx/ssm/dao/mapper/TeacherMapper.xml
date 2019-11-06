@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbtcsrzzx.ssm.dao.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.hbtcsrzzx.ssm.po.Teacher" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="edu_level" property="eduLevel" jdbcType="VARCHAR" />
+    <result column="direction" property="direction" jdbcType="VARCHAR" />
+    <result column="cert" property="cert" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="psw" property="psw" jdbcType="VARCHAR" />
+    <result column="isonline" property="isonline" jdbcType="INTEGER" />
+    <result column="regtime" property="regtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hbtcsrzzx.ssm.po.TeacherWithBLOBs" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, image, phone, company, birthplace, category, subject, edu_level, direction, 
+    cert, email, state, psw, isonline, regtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduction, context
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hbtcsrzzx.ssm.po.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="startRow != null and pageSize != 0">
+    	limit #{startRow},#{pageSize}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbtcsrzzx.ssm.po.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != 0">
+    	limit #{startRow},#{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbtcsrzzx.ssm.po.TeacherExample" >
+    delete from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbtcsrzzx.ssm.po.TeacherWithBLOBs" >
+    insert into teacher (id, name, image, 
+      phone, company, birthplace, 
+      category, subject, edu_level, 
+      direction, cert, email, 
+      state, psw, isonline, 
+      regtime, introduction, context
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{eduLevel,jdbcType=VARCHAR}, 
+      #{direction,jdbcType=VARCHAR}, #{cert,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{psw,jdbcType=VARCHAR}, #{isonline,jdbcType=INTEGER}, 
+      #{regtime,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR}, #{context,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbtcsrzzx.ssm.po.TeacherWithBLOBs" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="birthplace != null" >
+        birthplace,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="eduLevel != null" >
+        edu_level,
+      </if>
+      <if test="direction != null" >
+        direction,
+      </if>
+      <if test="cert != null" >
+        cert,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="psw != null" >
+        psw,
+      </if>
+      <if test="isonline != null" >
+        isonline,
+      </if>
+      <if test="regtime != null" >
+        regtime,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="eduLevel != null" >
+        #{eduLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="cert != null" >
+        #{cert,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="psw != null" >
+        #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null" >
+        #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        #{regtime,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbtcsrzzx.ssm.po.TeacherExample" resultType="java.lang.Integer" >
+    select count(*) from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teacher
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthplace != null" >
+        birthplace = #{record.birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduLevel != null" >
+        edu_level = #{record.eduLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.direction != null" >
+        direction = #{record.direction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cert != null" >
+        cert = #{record.cert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.psw != null" >
+        psw = #{record.psw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isonline != null" >
+        isonline = #{record.isonline,jdbcType=INTEGER},
+      </if>
+      <if test="record.regtime != null" >
+        regtime = #{record.regtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.context != null" >
+        context = #{record.context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update teacher
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=VARCHAR},
+      birthplace = #{record.birthplace,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      edu_level = #{record.eduLevel,jdbcType=VARCHAR},
+      direction = #{record.direction,jdbcType=VARCHAR},
+      cert = #{record.cert,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      psw = #{record.psw,jdbcType=VARCHAR},
+      isonline = #{record.isonline,jdbcType=INTEGER},
+      regtime = #{record.regtime,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      context = #{record.context,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teacher
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=VARCHAR},
+      birthplace = #{record.birthplace,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      edu_level = #{record.eduLevel,jdbcType=VARCHAR},
+      direction = #{record.direction,jdbcType=VARCHAR},
+      cert = #{record.cert,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      psw = #{record.psw,jdbcType=VARCHAR},
+      isonline = #{record.isonline,jdbcType=INTEGER},
+      regtime = #{record.regtime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbtcsrzzx.ssm.po.TeacherWithBLOBs" >
+    update teacher
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        birthplace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="eduLevel != null" >
+        edu_level = #{eduLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null" >
+        direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="cert != null" >
+        cert = #{cert,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="psw != null" >
+        psw = #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null" >
+        isonline = #{isonline,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        regtime = #{regtime,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hbtcsrzzx.ssm.po.TeacherWithBLOBs" >
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      edu_level = #{eduLevel,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=VARCHAR},
+      cert = #{cert,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      psw = #{psw,jdbcType=VARCHAR},
+      isonline = #{isonline,jdbcType=INTEGER},
+      regtime = #{regtime,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbtcsrzzx.ssm.po.Teacher" >
+    update teacher
+    set name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      edu_level = #{eduLevel,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=VARCHAR},
+      cert = #{cert,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      psw = #{psw,jdbcType=VARCHAR},
+      isonline = #{isonline,jdbcType=INTEGER},
+      regtime = #{regtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,143 @@
+*{ margin:0; padding:0;}
+body{ background:#3f3f3f;font:12px/2 arial;}
+ul,li{list-style-type:none;}
+a{text-decoration:none}
+a:focus{outline:0;}
+#container{ 
+    width:100%;
+    margin:auto;
+    background:#fff;
+    display: flex;
+    display: flex;
+    align-items: stretch;
+    }
+.control-label{
+  width:140px !important;
+  text-align: justify;
+  text-justify:inter-ideograph;
+}
+#userinfo>tr>td:first-child{
+    text-align: right;
+    width:100px;
+}
+#userinfo>tr>td:last-child{
+    text-align: left;
+    width:100px;
+}
+.control-group{
+    width: 350px !important;
+    height: 35px;
+    margin-bottom: 0 !important;
+}
+#jgsh{
+    display: inline-block;
+}
+#jgsh .control-group{
+    display: flex;
+    align-items: baseline;
+}
+#jgsh .controls{
+    display: flex;
+    align-items: baseline;
+}
+.controls{
+    display:inline-block;
+  } 
+#idcard{
+    display: inline-block;
+    float: right;
+    width: 235px;
+}
+#id-up,#id-down{
+    height: 155px;
+}
+.layui-form-label{
+    width: 126px;
+}
+.layui-input{
+    width:158px;
+}
+#jgsh .layui-input-inline{
+    margin-left: 130px !important;
+}
+.main{
+    width:84%; 
+    display: inline-block;
+    padding: 15px 8px;
+     }
+.between{
+    text-align: center;
+    margin:0 auto;
+    display: block;
+}     
+.between>div{
+   display: inline-block;
+}     
+/* .main_cont>li:first-child div{
+    float: left;
+} */
+.main_cont>li:first-child table{
+    width:250px;
+}
+.main_cont>li:nth-child(3) ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.main_cont>li:nth-child(3) ul>li{
+    float: left;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+}
+li>#search{
+    margin-right: 100px;
+}
+.silder{
+    font-size: 20px;
+    padding: 15px 0px;
+    background-color:#F5F5F5;
+    width:15%; 
+    display: inline-block;
+    border-right:1px solid #ccc;
+    vertical-align: middle;
+}
+#grtx>img{
+    width:150px;
+    margin:10px 70px;
+}
+#grtx>a{
+    margin:10px 70px;
+}
+.silder>ul>li{
+    line-height: 30px;
+    color: #fff;
+    margin:20px 10px;
+    text-align: center;
+}
+.silde_menu>li>a{
+    color:#fff;
+}
+.silde_menu>li:hover{
+    background-color:#3f3f3f;
+}
+.silde_menu>li:hover a{
+    color:black;
+}
+.fytital{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    margin:30px 40px 30px 0 ;
+}
+#form_select{
+    display: inline-block;
+}
+#form_select>div{
+    display: inline-block;
+    width: 158px;
+    margin:0;padding:0
+}
+/* #search_btn{
+    float: right;
+} */

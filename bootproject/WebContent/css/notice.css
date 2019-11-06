@@ -1,0 +1,97 @@
+.art1, .art3, .art03, .art4 {
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 10px;
+	font-size: 18px;
+	display: block;
+	overflow: hidden
+}
+
+.art03 {
+	text-align: center;
+	font-weight: 700;
+	padding: 0
+}
+
+.art4 {
+	display: block;
+	background: url(../img/art_04.png) left center no-repeat;
+	padding-left: 30px;
+	margin-bottom: 30px
+}
+
+.art3 a {
+	color: #c51615
+}
+
+.art3 {
+	font-size: 13px;
+	margin-top: 20px;
+	border-bottom: 1px solid #d8d8d8;
+	line-height: 30px
+}
+
+.art3 p {
+	font-size: 16px;
+	text-align: center;
+	font-weight: 600
+}
+
+.art1 span {
+	width: 80%;
+	float: left;
+	display: block;
+}
+
+.art1 .art2 {
+	width:140px;
+	padding-left: 30px;
+	margin-top: 0.8%;
+	line-height: 35px;
+	float: right;
+	color: #0b50ad;
+	display: block;
+	background: url(../img/art_04.png) left center no-repeat
+}
+
+.art1 a {
+	color: #333;
+	margin: 0px auto;
+	margin-top: 10px
+}
+
+.art1 p, .news2 p {
+	color: #999;
+	font-size: 14px
+}
+
+.art {
+	width: 100%;
+	padding: 1%;
+	height: 74px;
+	display: block;
+	background: #f5f5f5;
+}
+
+.art_1 {
+	width: 100%;
+	padding: 1%;
+	height: auto;
+	display: block;
+	background: #f5f5f5;
+	overflow: hidden
+}
+
+.art_1 img {
+	margin-right: 8px;
+}
+
+.art1 a:hover {
+	background: #f1f1f1;
+	color: #c51615
+}
+
+#notice-context img{
+	width: 100%;
+	height: auto;
+}

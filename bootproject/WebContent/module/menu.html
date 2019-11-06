@@ -1,0 +1,81 @@
+<nav class="navbar-fixed-top"  style="background-color: #009688">
+        <div class="mytop container" id="mytop ">
+            <div style="margin-left: -80px;">
+                <a href="index.html" class="nav-brand mynav-brand">
+                    <img class="inline-block" src="img/logo.png"	style="height:75px;"> 
+                </a>
+                <div id="shownav"><img src="img/caidan.png" alt=""></div>
+            </div>
+        </div>
+        <div class="menulist">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed"><img src="img/touxiang.jpg" alt=""><span id="name"></span></li>
+                    <li class="layui-nav-item layui-nav-itemed" id="btnli"><button class="mynav-btn" onclick="login();" style="margin-top: 0">登录</button></li>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="index.html">首页</a></li>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;" id="personal">个人中心</a></li>
+                    <li class="layui-nav-item">
+                    <a href="javascript:;">测评中心</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="center.html">中心列表</a></dd>
+                        <dd><a href="expert.html">专家团队</a></dd>
+                    </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="institution.html">机构一览</a></li>
+                    <li class="layui-nav-item">
+                    <a href="javascript:;">艺海颉英</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="teacher.html">园丁风采</a></dd>
+                        <dd><a href="student.html">明日之星</a></dd>
+                    </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                    <a href="javascript:;">新闻公告</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="news.html">新闻动态</a></dd>
+                        <dd><a href="notice.html">通知公告</a></dd>
+                    </dl>
+                </li>
+                    <li class="layui-nav-item"><a href="contact.html">联系我们</a></li>
+                    <li class="layui-nav-item"><a href="" id="reg_reset">注销登陆</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+            layui.use('element', function(){
+            var element = layui.element;
+                element.init();
+            });
+            var name=localStorage.getItem("name");
+            $("#personal").click(function(){
+                if(name!="null"){
+                    location.href="user/personal.html"
+                }else{
+                    layer.msg('您尚未登陆', {icon:5});
+                }
+            })
+            function login(){
+                location.href="login.html"
+            }
+            $("#shownav").click(function(){
+                if($(".menulist").css("width")!="0px"){
+                    $(".menulist").css("width","0px")
+                }else{
+                    $(".menulist").css("width","200px")
+                }
+                })
+            if(name!="null"){
+                $("#btnli").html( '<a href="user/personal.html" style="color:#fff;">欢迎'+name+'</a>');
+            }
+            $("#reg_reset").on("click",function(){
+                localStorage.clear();
+                $("#btnli").html( `<button class="mynav-btn" onclick="login();"  style="margin-top: 0">登录</button>`);
+                axios.post("/user/logout.action").then(res=>{
+                    if(res.data.code==200){
+                        layer.msg('注销成功！', {icon: 6});
+                        setTimeout(function(){
+                            window.location.reload();
+                        },1500)
+                    }
+                })
+            })
+    </script>

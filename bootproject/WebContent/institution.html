@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>机构一览-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/institution.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+<body>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/abulation_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center>
+					<h1>圆梦中华艺术之星</h1>
+					<h4>全国艺术特长生湖北省第15届</h4>
+					<a href=""
+						style="width: 180px; height: 50px; margin-top: 40px; display: block; border: 1px solid #fff; margin: 0 auto; color: #FFF; line-height: 50px;">立即报名</a>
+				</center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--中心列表-->
+
+	<div class="tabulation container">
+		<div class="tabulation1">
+			<div class="tabulation2">
+				机构一览
+				<p>MECHANISM LIST</p>
+			</div>
+			<div class="tabulation3" id="city-list">
+				<!-- <a href="">全部</a> 
+				<a href="">湖北中心</a> <a href="">武汉市中心中</a> <a
+					href="">黄石市中心 </a> <a href="">十堰市</a> -->
+			</div>
+		</div>
+
+		<div class="tabulation01">
+			<div class="tabulation02">
+				<i id="center-name">湖北省</i>
+			</div>
+			<div class="tabulation03">
+				<!--机构一览-->
+				<div class="container-fluid int-container">
+					<div class="container"></div>
+					<div class="hovertreeaction">
+						<ul class="clearfix row" id="institution-list">
+						</ul>
+						<div class="clear"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	 <div class="rows">
+		<center><ul class="pagination" id="mypagination">
+		</ul></center>
+	</div>
+	<footer></footer>
+		<script type="text/javascript">
+		    var currentPage = 1;
+		    var pageSize = 8;
+		    var path="";
+		    //var path="";
+		    var city='';
+			function setBanner(){
+			    var list = new Array('武汉市','黄石市','十堰市','宜昌市','襄阳市','鄂州市','荆门市','孝感市','荆州市','黄冈市','咸宁市','随州市');
+			    $("#city-list").html('<a href="javascript:void(0);" onclick="getInstitution(\'\')">全部</a>');
+			    for(var i=0;i<list.length;i++){
+					$("#city-list").append('<a href="javascript:void(0);" onclick="getInstitution(\''+list[i]+'\')">'+list[i]+'</a>');
+			    }
+			}
+			
+			function getInstitution(_city){
+			    $("#center-name").html(_city);
+			    city = _city;
+			    render();
+			}
+		    
+		    function render() {
+		        $.ajax({
+		            url: "http://48y3pn.natappfree.cc/jsp/institutions/findInstitutionByAddr.action",
+		            data: {
+		        	  // city:city,
+		              page: currentPage,
+		              limit: pageSize
+		            },
+		            dataType: "json",
+		            success: function (data) {
+		        	console.log(data);
+		                // 将数据渲染到页面
+		                if(data.status == 200){
+		                    var list = data.rows;
+		                    var sum = data.datasize;
+		                    $("#institution-list").html('');
+		                    for(var i=0;i<list.length;i++){
+		                			$("#institution-list").append('<li class=" col-lg-4 col-md-6 col-sm-12 col-xs-12"><div class="photo"><img src="http://48y3pn.natappfree.cc'+path+list[i].image+'" /><p>'+
+		                		    list[i].name+'</p></div><div class="rsp"></div><div class="text"><a href="institution-details.html?id='+list[i].id+'"><center class="contact">'+
+		                			'<h4>'+list[i].name+'</h4><p class="telephone">'+list[i].phone+'</p><p class="address">'+
+		                			list[i].addr+'</p></center></a></div></li>');     	
+		                    }
+		                    // 调用分页函数.参数:当前所在页, 总页数(用总条数 除以 每页显示多少条,在向上取整), ajax函数
+		                    setrsp();
+		                    setPage(currentPage, Math.ceil(sum/pageSize), render);
+		                }
+		            },error:function(){
+		        		$("#institution-list").append("抱歉,请刷新页面");
+		            }
+		        })
+		    }
+		    setBanner();
+		    render();
+
+		    /**
+		     *
+		     * @param pageCurrent 当前所在页
+		     * @param pageSum 总页数
+		     * @param callback 调用ajax
+		     */
+		    function setPage(pageCurrent, pageSum, callback) {
+		        $("#mypagination").bootstrapPaginator({
+		            //设置版本号
+		            bootstrapMajorVersion: 3,
+		            // 显示第几页
+		            currentPage: pageCurrent,
+		            // 总页数
+		            totalPages: pageSum,
+		            //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+		            onPageClicked: function (event,originalEvent,type,page) {
+		                // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+		                currentPage = page
+		                callback && callback()
+		            }
+		        })
+		    }
+		    
+		    function setrsp(){
+			    $(".hovertreeaction ul li .rsp").hide();
+			    $(".hovertreeaction  ul li").hover(function(){
+			    $(this).find(".rsp").stop().fadeTo(585,0.5)
+			    $(this).find(".text").stop().animate({left:'0'}, {duration: 585})
+			    },function(){
+			    $(this).find(".rsp").stop().fadeTo(585,0)
+			    $(this).find(".text").stop().animate({left:'585'}, {duration: "fast"})
+			    $(this).find(".text").animate({left:'-585'}, {duration: 0})
+			    });
+			}
+	    </script>
+</body>
+</html>

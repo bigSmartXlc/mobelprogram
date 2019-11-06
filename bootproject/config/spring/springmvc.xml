@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:security="http://www.springframework.org/schema/security"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd
+			    http://www.springframework.org/schema/aop
+			    http://www.springframework.org/schema/aop/spring-aop.xsd
+			    http://www.springframework.org/schema/tx
+			    http://www.springframework.org/schema/tx/spring-tx.xsd
+			    http://www.springframework.org/schema/mvc
+			    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			    http://www.springframework.org/schema/security
+			    http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:global-method-security pre-post-annotations="enabled">
+		<security:expression-handler ref="expressionHandler" /></security:global-method-security>
+	<context:property-placeholder location="classpath:weixinpay.properties,classpath:aes.properties,classpath:weibo.properties,classpath:qq.properties" />
+	<!-- 组件扫描 只扫描action -->
+	<context:component-scan base-package="com.hbtcsrzzx.ssm.action" />
+
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>text/css;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+						<value>application/x-www-form-urlencoded; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+
+	<!--<mvc:default-servlet-handler/>-->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
+
+	<!-- 视图解析器 解析jsp视图，默认使用jstl，要求classpath下有jstl的jar包 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 视图的前缀 -->
+		<!-- <property name="prefix" value="/WEB-INF/jsp/" /> -->
+		<property name="prefix" value="/jsp/" />
+		<!-- 视图的后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<mvc:resources location="/module/" mapping="/module/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+
+	<!--<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*" />
+			<bean class="com.hbtcsrzzx.ssm.filter.LoginInterceptorFilter" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/enroll/*" />
+			<bean class="com.hbtcsrzzx.ssm.filter.LoginInterceptorFilter" />
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+-->
+
+</beans>

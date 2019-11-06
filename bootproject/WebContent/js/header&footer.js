@@ -1,0 +1,17 @@
+ $(function(){
+     //加载页头页脚
+     $.ajax({
+        url:"module/menu.html",
+        type:"get",
+        success:function(result){
+        $(result).replaceAll("header");
+        }
+    });
+    $.ajax({
+        url:"module/footer.html",
+        type:"get",
+        success:function(result){
+        $(result).replaceAll("footer");
+        }
+    })
+ })

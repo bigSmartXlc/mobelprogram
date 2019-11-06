@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbtcsrzzx.ssm.dao.mapper.UserLogMapper" >
+  <resultMap id="BaseResultMap" type="com.hbtcsrzzx.ssm.po.UserLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="parent_name" property="parentName" jdbcType="VARCHAR" />
+    <result column="family_address" property="familyAddress" jdbcType="VARCHAR" />
+    <result column="mailbox" property="mailbox" jdbcType="VARCHAR" />
+    <result column="family_phone" property="familyPhone" jdbcType="VARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="distribution_level" property="distributionLevel" jdbcType="VARCHAR" />
+    <result column="recommender" property="recommender" jdbcType="VARCHAR" />
+    <result column="recommended_time" property="recommendedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, phone, password, name, gender, nationality, nation, city_id, birthday, id_card,
+    unit, parent_name, family_address, mailbox, family_phone, creation_time, update_time,
+    state, distribution_level, recommender, recommended_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbtcsrzzx.ssm.po.UserLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from user_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbtcsrzzx.ssm.po.UserLogExample" >
+    delete from user_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbtcsrzzx.ssm.po.UserLog" >
+    insert into user_log (id, phone, password,
+    name, gender, nationality,
+    nation, city_id, birthday,
+    id_card, unit, parent_name,
+    family_address, mailbox, family_phone,
+    creation_time, update_time, state,
+    distribution_level, recommender, recommended_time
+    )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{nationality,jdbcType=VARCHAR},
+    #{nation,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, #{birthday,jdbcType=DATE},
+    #{idCard,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR},
+    #{familyAddress,jdbcType=VARCHAR}, #{mailbox,jdbcType=VARCHAR}, #{familyPhone,jdbcType=VARCHAR},
+    #{creationTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER},
+    #{distributionLevel,jdbcType=VARCHAR}, #{recommender,jdbcType=VARCHAR}, #{recommendedTime,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbtcsrzzx.ssm.po.UserLog" >
+    insert into user_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="parentName != null" >
+        parent_name,
+      </if>
+      <if test="familyAddress != null" >
+        family_address,
+      </if>
+      <if test="mailbox != null" >
+        mailbox,
+      </if>
+      <if test="familyPhone != null" >
+        family_phone,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="distributionLevel != null" >
+        distribution_level,
+      </if>
+      <if test="recommender != null" >
+        recommender,
+      </if>
+      <if test="recommendedTime != null" >
+        recommended_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null" >
+        #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mailbox != null" >
+        #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="familyPhone != null" >
+        #{familyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="distributionLevel != null" >
+        #{distributionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="recommender != null" >
+        #{recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedTime != null" >
+        #{recommendedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hbtcsrzzx.ssm.po.UserLogExample" resultType="java.lang.Integer" >
+    select count(*) from user_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.nationality != null" >
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.idCard != null" >
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentName != null" >
+        parent_name = #{record.parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyAddress != null" >
+        family_address = #{record.familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailbox != null" >
+        mailbox = #{record.mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.familyPhone != null" >
+        family_phone = #{record.familyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationTime != null" >
+        creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.distributionLevel != null" >
+        distribution_level = #{record.distributionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommender != null" >
+        recommender = #{record.recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommendedTime != null" >
+        recommended_time = #{record.recommendedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_log
+    set id = #{record.id,jdbcType=INTEGER},
+    phone = #{record.phone,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR},
+    name = #{record.name,jdbcType=VARCHAR},
+    gender = #{record.gender,jdbcType=INTEGER},
+    nationality = #{record.nationality,jdbcType=VARCHAR},
+    nation = #{record.nation,jdbcType=VARCHAR},
+    city_id = #{record.cityId,jdbcType=INTEGER},
+    birthday = #{record.birthday,jdbcType=DATE},
+    id_card = #{record.idCard,jdbcType=VARCHAR},
+    unit = #{record.unit,jdbcType=VARCHAR},
+    parent_name = #{record.parentName,jdbcType=VARCHAR},
+    family_address = #{record.familyAddress,jdbcType=VARCHAR},
+    mailbox = #{record.mailbox,jdbcType=VARCHAR},
+    family_phone = #{record.familyPhone,jdbcType=VARCHAR},
+    creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    state = #{record.state,jdbcType=INTEGER},
+    distribution_level = #{record.distributionLevel,jdbcType=VARCHAR},
+    recommender = #{record.recommender,jdbcType=VARCHAR},
+    recommended_time = #{record.recommendedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbtcsrzzx.ssm.po.UserLog" >
+    update user_log
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        parent_name = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="familyAddress != null" >
+        family_address = #{familyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mailbox != null" >
+        mailbox = #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="familyPhone != null" >
+        family_phone = #{familyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="distributionLevel != null" >
+        distribution_level = #{distributionLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="recommender != null" >
+        recommender = #{recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedTime != null" >
+        recommended_time = #{recommendedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbtcsrzzx.ssm.po.UserLog" >
+    update user_log
+    set phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      family_address = #{familyAddress,jdbcType=VARCHAR},
+      mailbox = #{mailbox,jdbcType=VARCHAR},
+      family_phone = #{familyPhone,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      distribution_level = #{distributionLevel,jdbcType=VARCHAR},
+      recommender = #{recommender,jdbcType=VARCHAR},
+      recommended_time = #{recommendedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

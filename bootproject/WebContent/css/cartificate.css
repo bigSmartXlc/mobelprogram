@@ -1,0 +1,53 @@
+.certificate {
+	margin: 20px auto;
+	padding-top: 150px;
+	min-height: 400px;
+	font-size: 28px;
+	text-align: center;
+	background: url(../img/certificate_04.jpg) center center no-repeat;
+	background-size: contain;
+}
+
+.certificate1 {
+	width: 730px;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+	display: block
+}
+
+.certificate2 {
+	width: 196px;
+	height: 281px;
+	float: left;
+	margin-left: 50px
+}
+
+.certificate3 {
+	width: 450px;
+	height: 351px;
+	float: left;
+	margin-left: 20px
+}
+
+.certificate3 p {
+	text-align: left;
+}
+.news-cert-input {
+	margin-top: 8px;
+	width: 100%;
+	margin-bottom: 5%
+}
+
+.news-cert-input input {
+	width: 100%;
+}
+.search_btn {
+	border: 0;
+	background-color: rgba(0, 0, 0, 0);
+	position: absolute;
+	right: 20px;
+	top: 8px;
+	height: 20px;
+	z-index: 999;
+}

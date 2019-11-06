@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>园丁风采-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+</head>
+
+<body>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<!-- <%@include file="./module/menu.html" %> -->
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/teacher_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center>
+					<h1>园丁风采</h1>
+					<h4>用艺术沟通 让世界和谐</h4>
+				</center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--园丁风采-->
+
+
+	<div class="container" id="teacher-context" style="padding: 0 10%;">
+	
+	</div>
+
+	<footer></footer>
+	<script type="text/javascript">
+	$(function(){
+	    var id = GetQueryString("id");
+	    if(id!=null && id!='undefined' && id!=''){
+			$.ajax({
+				type : 'POST',
+				url :'http://48y3pn.natappfree.cc/jsp/teachers/findTeacherById.action',
+				data : {
+				    'id' : id
+				},
+				dataType : 'json',
+				success : function(data) {
+				    if (data.code === 200) {
+						var obj = data.rows;
+						
+						if(obj!=null &&obj!='undefined'&&obj!=''){
+							$(document).attr("title",obj.name+"-园丁风采-全国艺术特长生测评认证湖北省中心");
+			  			     $("#teacher-context").append(obj.context);
+						}
+						
+					}
+				},
+				error:function() {
+				    //layer.msg("获取菜单失败");
+				}
+		   });
+	    }
+	    
+	})
+    </script>
+</body>
+</html>

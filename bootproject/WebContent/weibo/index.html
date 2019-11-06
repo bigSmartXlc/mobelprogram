@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var code = getUrlParam('code');
+
+
+        if (code) {
+
+            $.ajax({
+                type: 'POST',
+                url: '/weibo/getAccessToken.action',
+                data: {'code': code},
+                dataType: 'json',
+                success: function (res) {
+
+                    console.log("res1" + res)
+                    if (res.code === 200) {
+
+                        var accessToken = res.obj;
+                        $.ajax({
+                            type: 'POST',
+                            url: '/weibo/isUserExist.action',
+                            data: {'accessToken': accessToken},
+                            dataType: 'json',
+                            success: function (res) {
+
+                                console.log("res2" + res);
+
+                                if (res.code === 200) {
+                                    alert("登录成功")
+                                }
+                                if (res.code === -1) {
+                                    alert("登录失败,请重新登录")
+                                }
+                                if (res.code === -2) {
+
+                                    alert("请先绑定网站用户");
+                                }
+                            },
+                            error: function (e) {
+
+                            }
+                        })
+
+                    }
+                },
+                error: function (e) {
+
+                }
+
+            })
+        }
+
+    })
+
+
+    // JS`正则表达式`获取地址栏url参数：
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; // 返回参数值
+    }
+</script>
+<body>
+<h1>跳转页</h1>
+</body>
+
+
+</html>

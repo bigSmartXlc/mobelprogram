@@ -1,0 +1,90 @@
+.tabulation {
+	height: auto;
+	margin: 10px auto;
+	display: block
+}
+
+.tabulation1 {
+	width: 18%;
+	margin: 10px auto;
+	overflow: hidden;
+	display: block;
+	float: left
+}
+
+.tabulation2 {
+	width: 80%;
+	background: #c51615;
+	padding: 10%;
+	padding-bottom: 4%;
+	color: #FFF
+}
+
+.tabulation3 {
+	color: #FFF
+}
+
+.tabulation3 a {
+	width: 80%;
+	background: #f5f5f5;
+	padding-left: 10%;
+	height: 40px;
+	display: block;
+	color: #333;
+	line-height: 40px;
+	margin: 1px 0
+}
+
+.tabulation3 a:hover {
+	background: url(../img/abulation_04.jpg) #ededed right center no-repeat;
+	color: #c51615
+}
+
+.tabulation3 a:home {
+	background: url(../img/abulation_04.jpg) #ededed right center no-repeat;
+	color: #c51615
+}
+
+.tabulation01 {
+	width: 80%;
+	height: auto;
+	float: right;
+	margin: 10px auto;
+}
+.tabulation01 img{
+	width:80%;
+	height:auto;
+}
+.tabulation02 {
+	width: 100%;
+	height: 30px;
+	border-bottom: 1px solid #D9D9D9;
+	font-size: 15px;
+}
+
+.tabulation02 i {
+	width: 60px;
+	height: 30px;
+	border-bottom: 2px solid #c51615;
+	display: block
+}
+
+.tabulation03 {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	display: block;
+	margin-top: 20px;
+	line-height: 28px;
+	font-size: 14px;
+}
+
+.tabulation04 {
+	margin-bottom: 20px
+}
+
+.tabulation04 p {
+	font-size: 22px;
+	font-weight: 800;
+	text-align: center
+}

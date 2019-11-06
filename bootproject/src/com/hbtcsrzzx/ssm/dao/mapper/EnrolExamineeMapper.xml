@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbtcsrzzx.ssm.dao.mapper.EnrolExamineeMapper" >
+  <resultMap id="BaseResultMap" type="com.hbtcsrzzx.ssm.po.EnrolExaminee" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="examination_card" property="examinationCard" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="evaluation_address" property="evaluationAddress" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="enrol_scene_id" property="enrolSceneId" jdbcType="INTEGER" />
+    <result column="recommend_unit" property="recommendUnit" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="user_log_phone" property="userLogPhone" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="cost" property="cost" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="examination_results" property="examinationResults" jdbcType="INTEGER" />
+    <result column="institution_name" property="institutionName" jdbcType="VARCHAR" />
+    <result column="institution_nature" property="institutionNature" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, gender, nationality, nation, examination_card, id_card, unit, evaluation_address,
+    category, subject, level, enrol_scene_id, recommend_unit, pay_status, audit_status,
+    user_log_phone, state, cost, order_id, examination_results, institution_name, institution_nature,
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hbtcsrzzx.ssm.po.EnrolExamineeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from enrol_examinee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from enrol_examinee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enrol_examinee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hbtcsrzzx.ssm.po.EnrolExamineeExample" >
+    delete from enrol_examinee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hbtcsrzzx.ssm.po.EnrolExaminee" >
+    insert into enrol_examinee (id, name, gender,
+    nationality, nation, examination_card,
+    id_card, unit, evaluation_address,
+    category, subject, level,
+    enrol_scene_id, recommend_unit, pay_status,
+    audit_status, user_log_phone, state,
+    cost, order_id, examination_results,
+    institution_name, institution_nature, create_time,
+    update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER},
+    #{nationality,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{examinationCard,jdbcType=VARCHAR},
+    #{idCard,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{evaluationAddress,jdbcType=VARCHAR},
+    #{category,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR},
+    #{enrolSceneId,jdbcType=INTEGER}, #{recommendUnit,jdbcType=VARCHAR}, #{payStatus,jdbcType=INTEGER},
+    #{auditStatus,jdbcType=INTEGER}, #{userLogPhone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER},
+    #{cost,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, #{examinationResults,jdbcType=INTEGER},
+    #{institutionName,jdbcType=VARCHAR}, #{institutionNature,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{updateTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Integer" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbtcsrzzx.ssm.po.EnrolExaminee" >
+    insert into enrol_examinee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="examinationCard != null" >
+        examination_card,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="evaluationAddress != null" >
+        evaluation_address,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="enrolSceneId != null" >
+        enrol_scene_id,
+      </if>
+      <if test="recommendUnit != null" >
+        recommend_unit,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="userLogPhone != null" >
+        user_log_phone,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="examinationResults != null" >
+        examination_results,
+      </if>
+      <if test="institutionName != null" >
+        institution_name,
+      </if>
+      <if test="institutionNature != null" >
+        institution_nature,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCard != null" >
+        #{examinationCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationAddress != null" >
+        #{evaluationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolSceneId != null" >
+        #{enrolSceneId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendUnit != null" >
+        #{recommendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userLogPhone != null" >
+        #{userLogPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="examinationResults != null" >
+        #{examinationResults,jdbcType=INTEGER},
+      </if>
+      <if test="institutionName != null" >
+        #{institutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionNature != null" >
+        #{institutionNature,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Integer" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+  </insert>
+  <select id="countByExample" parameterType="com.hbtcsrzzx.ssm.po.EnrolExamineeExample" resultType="java.lang.Integer" >
+    select count(*) from enrol_examinee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update enrol_examinee
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.nationality != null" >
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examinationCard != null" >
+        examination_card = #{record.examinationCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null" >
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationAddress != null" >
+        evaluation_address = #{record.evaluationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null" >
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enrolSceneId != null" >
+        enrol_scene_id = #{record.enrolSceneId,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommendUnit != null" >
+        recommend_unit = #{record.recommendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditStatus != null" >
+        audit_status = #{record.auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.userLogPhone != null" >
+        user_log_phone = #{record.userLogPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.examinationResults != null" >
+        examination_results = #{record.examinationResults,jdbcType=INTEGER},
+      </if>
+      <if test="record.institutionName != null" >
+        institution_name = #{record.institutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institutionNature != null" >
+        institution_nature = #{record.institutionNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update enrol_examinee
+    set id = #{record.id,jdbcType=INTEGER},
+    name = #{record.name,jdbcType=VARCHAR},
+    gender = #{record.gender,jdbcType=INTEGER},
+    nationality = #{record.nationality,jdbcType=VARCHAR},
+    nation = #{record.nation,jdbcType=VARCHAR},
+    examination_card = #{record.examinationCard,jdbcType=VARCHAR},
+    id_card = #{record.idCard,jdbcType=VARCHAR},
+    unit = #{record.unit,jdbcType=VARCHAR},
+    evaluation_address = #{record.evaluationAddress,jdbcType=VARCHAR},
+    category = #{record.category,jdbcType=VARCHAR},
+    subject = #{record.subject,jdbcType=VARCHAR},
+    level = #{record.level,jdbcType=VARCHAR},
+    enrol_scene_id = #{record.enrolSceneId,jdbcType=INTEGER},
+    recommend_unit = #{record.recommendUnit,jdbcType=VARCHAR},
+    pay_status = #{record.payStatus,jdbcType=INTEGER},
+    audit_status = #{record.auditStatus,jdbcType=INTEGER},
+    user_log_phone = #{record.userLogPhone,jdbcType=VARCHAR},
+    state = #{record.state,jdbcType=INTEGER},
+    cost = #{record.cost,jdbcType=INTEGER},
+    order_id = #{record.orderId,jdbcType=BIGINT},
+    examination_results = #{record.examinationResults,jdbcType=INTEGER},
+    institution_name = #{record.institutionName,jdbcType=VARCHAR},
+    institution_nature = #{record.institutionNature,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbtcsrzzx.ssm.po.EnrolExaminee" >
+    update enrol_examinee
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCard != null" >
+        examination_card = #{examinationCard,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationAddress != null" >
+        evaluation_address = #{evaluationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolSceneId != null" >
+        enrol_scene_id = #{enrolSceneId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendUnit != null" >
+        recommend_unit = #{recommendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userLogPhone != null" >
+        user_log_phone = #{userLogPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="examinationResults != null" >
+        examination_results = #{examinationResults,jdbcType=INTEGER},
+      </if>
+      <if test="institutionName != null" >
+        institution_name = #{institutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionNature != null" >
+        institution_nature = #{institutionNature,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbtcsrzzx.ssm.po.EnrolExaminee" >
+    update enrol_examinee
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      examination_card = #{examinationCard,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      evaluation_address = #{evaluationAddress,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      enrol_scene_id = #{enrolSceneId,jdbcType=INTEGER},
+      recommend_unit = #{recommendUnit,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      user_log_phone = #{userLogPhone,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=BIGINT},
+      examination_results = #{examinationResults,jdbcType=INTEGER},
+      institution_name = #{institutionName,jdbcType=VARCHAR},
+      institution_nature = #{institutionNature,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

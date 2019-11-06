@@ -1,0 +1,173 @@
+.hovertreeaction {
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.hovertreeaction ul {
+	width: 100%;
+	margin: 0;
+	padding: 0
+}
+
+.hovertreeaction ul li {
+	float: left;
+	display: inline;
+	width: 33.3333333333%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.hovertreeaction ul li .photo {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin: 0;
+	padding: 0
+}
+
+.hovertreeaction .rsp {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	background: #000;
+	top: 0px;
+	left: 0px;
+	margin-left: auto; 
+    margin-right: auto;
+}
+
+.hovertreeaction .text {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	left: -100%;
+	top:50px;
+	overflow: hidden;
+}
+
+.hovertreeaction .text h3 {
+	width: 100%;
+	margin-top: 25%;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	color: #FFFFFF;
+	background: #000000;
+	font-family: "microsoft yahei";
+	font-size: 26px;
+}
+.news-container {
+	padding: 0;
+}
+#index-student-div .img-thumbnail{
+	width:238px;
+	height: 320px;
+}
+.news-enter {
+	height: 90px;
+	width: 100%;
+	background: #c61615;
+	margin-top: 2px;
+	text-align: center;
+}
+
+.news-enter-div {
+	height: 100%;
+	width: 30%;
+	margin: 0;
+	padding: 0 3%;
+	background: #ad1312;
+}
+
+.news-enter-font {
+	margin-top: 35px;
+	font-size: 23px;
+	color: #fff;
+	letter-spacing: 0.3em;
+}
+
+.news-enter-img {
+	margin-top: 20px;
+	margin-left: 13px;
+}
+
+.news-img-up {
+	letter-spacing: 2px;
+}
+
+.news-img-btm {
+	color: #777;
+	margin-top: 13px;
+}
+
+.news-img-btm a {
+	color: #777;
+}
+
+.news-cert-div span {
+	padding-left: 5px;
+	font-size: 16px;
+	letter-spacing: 0.2em;
+	color: #dc221b;
+	font-weight: 800
+}
+.news-cert-input {
+	margin-top: 8px;
+	width: 100%;
+	margin-bottom: 5%
+}
+
+.news-cert-input input {
+	width: 100%;
+}
+.search_btn {
+	border: 0;
+	background-color: rgba(0, 0, 0, 0);
+	position: absolute;
+	right: 20px;
+	top: 8px;
+	height: 20px;
+	z-index: 999;
+}
+.cert-img-ul{
+	list-style-type:none;
+}
+.cert-img-ul li{
+	float:left;
+	width:248px;
+	margin-left:40px;
+}
+
+.cert-img-ul li div img{
+	display: block;
+    width: 248px;
+    height: 173px;
+    padding: 0;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+.cert-img-ul li>div{
+	width:248px;
+	height:260px;
+}
+
+.cert-img-ul li>div>div{
+	text-align:center;
+}
+
+.friend-link a{
+	white-space:nowrap;	
+}
+.friend-link a{
+	display: inline-block;
+    line-height: 28px;
+    color: #444444;
+    text-decoration: none;
+}
+.friend-link a:hover{
+	color: #cc0000;
+}

@@ -1,0 +1,193 @@
+.details, .adetails {
+	width: 70%;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	margin: 0px auto;
+	margin-top: 25px
+}
+
+.details i {
+	background: #c61615;
+	line-height: 22px;
+	margin-right: 1%;
+	width: 1%;
+	height: 22px;
+	display: block;
+	float: left
+}
+
+.details i.details_a {
+	width: 10%;
+	background: none;
+	display: block;
+	margin-right: 0;
+	height: 22px;
+	color: #c61615;
+	float: left;
+	font-size: 20px
+}
+
+.details i.details_b {
+	width: 86%;
+	float: left;
+	margin-right: 0;
+	overflow: hidden;
+	display: block;
+	background: url(../img/yuand_07.jpg) repeat-x center left
+}
+
+.details_q {
+	width: 9%;
+	height: 118px;
+	display: block;
+	overflow: hidden;
+	float: left
+}
+
+.details_w {
+	width: 24.333333%;
+	height: 118px;
+	display: block;
+	overflow: hidden;
+	float: left;
+	color: #136ec2;
+	font-weight: 500;
+	font-size: 19px;
+	line-height: 40px;
+}
+
+.details_w p {
+	line-height: 12px;
+	color: #999;
+	font-weight: 100;
+	font-size: 13px
+}
+
+.details1 {
+	width: auto;
+	height: 251px;
+	float: left
+}
+
+.details2 {
+	width: 70%;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	float: left;
+	margin-left: 20px
+}
+
+.details3 {
+	font-size: 20px;
+	font-weight: 800;
+	width: 100%;
+	line-height: 34px;
+	display: block;
+	overflow: hidden;
+}
+
+.details4 {
+	font-size: 14px;
+	width: 100%;
+	height: 31px;
+	line-height: 31px;
+	border-bottom: #999 dashed 1px
+}
+
+.details5 {
+	width: 50%;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	float: left
+}
+
+.details6 {
+	width: 29%;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	float: left;
+}
+
+.details7 {
+	width: 70%;
+	height: auto;
+	display: block;
+	overflow: hidden;
+	float: left;
+}
+
+.adetails img {
+	width: 32%;
+	margin-right: 1.333%
+}
+
+.expert-row {
+	margin: 0;
+	padding: 0;
+	margin-top: 40px;
+}
+
+.expert-div {
+	padding: 0 auto;
+	margin: 0;
+}
+
+
+.expert-font {
+	/*top: 75%;
+	padding-left: 0;
+	padding-right: 0;
+	position: absolute;
+	right: 5%;
+	*/
+	margin:0;
+	padding:0;
+	margin-top:5px;
+	height: 70px;
+	width: 230px;
+	background: #8e7741;
+}
+
+.expert-font-div1 {
+	margin-left: 0;
+	width: 37%;
+	height: 100%;
+	display: inline-block;
+	color: #fff;
+	font-size: 18px;
+	letter-spacing:1px;
+	text-align: center;
+	/*padding-top: 8%;
+	padding-left: 5px*/
+	line-height:70px;
+}
+
+.expert-font-div2 {
+	width: 59%;
+	height: 100%;
+	display: inline-block;
+	float: right;
+}
+
+.expert-font-div3 {
+	padding: 0;
+	margin: 0;
+	padding-top: 15px;
+	width: 100%;
+	height: 50%;
+	text-align: left;
+	color:#fff;
+	font-size: 12px;
+}
+
+.expert-font-div4 {
+	width: 100%;
+	height: 50%;
+	text-align: left;
+	color: #fff;
+	font-size: 14px;
+}

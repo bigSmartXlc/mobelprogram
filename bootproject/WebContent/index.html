@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>全国艺术特长生测评认证湖北省中心</title>
+	<meta name="description" content="全国艺术特长生测评认证湖北省中心" />
+	<meta name="keywords" content="特长生,测评,认证,湖北" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/layui/css/layui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/axios.min.js"></script>
+	<script src="static/layui/layui.all.js"></script>
+	<script src="js/fmain.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/header&footer.js"></script>
+	<script src="js/carousel.js"></script>
+</head>	
+<header></header>
+<body class="container">
+<div class="row" style="background-color:#FAF4CA;">
+	<div id="carousel"></div>
+	<div class="col-md-10 col-sm-12 col-md-offset-1">
+		<div style="background-color: aliceblue;">
+			<div style="padding: 8px;">
+				<div class="container news-container">
+					<div class="row  no-gutters border-style" style="position: relative;">
+						<div class="col-lg-4 hidden-md hidden-sm hidden-xs">
+							<img src="img/news.png" style="width:80%;height:365px;" />
+						</div>
+						<div class="col-lg-4 col-sm-6 col-xs-6" id="index-news-div" style="height:365px;overflow: auto;">
+						</div>
+						<div class="col-lg-4 col-sm-6 col-xs-6">
+							<div class="news-cert-div">
+								<img src="img/cert.png" /> <span class="inline-block">证书查询</span>
+							</div>
+							<div class="input-group news-cert-input">
+								<input type="text" class="form-control" placeholder="请输入证书号">
+								<a href="certificate.html"><img class="search_btn" src="img/search.png" /></a>
+							</div>
+							<div class="news-enter">
+								<a href="./login.html">
+									<div class="col-md-3 hidden-sm hidden-xs news-enter-div">
+									<img src="img/bm.png" class="news-enter-img">
+								</div>
+									<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 news-enter-font">报名入口</div></a>
+							</div>
+							<div class="news-enter">
+								<div class="col-md-3 hidden-sm hidden-xs news-enter-div">
+									<img src="img/jg.png" class="news-enter-img">
+								</div>
+								<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 news-enter-font">机构入口</div>
+							</div>
+							<div class="news-enter">
+								<div class="col-md-3 hidden-sm hidden-xs news-enter-div">
+									<img src="img/center.png" class="news-enter-img">
+								</div>
+								<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 news-enter-font">中心入口</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--专家展示 -->
+				<div class="container expert-container border-style" id="index-expert-div">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-10 container-title-div1">专家团队</div>
+						<div class="col-lg-1 container-title-div2">
+							<a class="pull-right" href="./expert.html">+MORE</a>
+						</div>
+					</div>
+				
+				</div>
+				<!--学生展示-->
+				<div class="container stu-container border-style" id="index-student-div">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-10 container-title-div1">明日之星</div>
+						<div class="col-lg-1 container-title-div2">
+							<a class="pull-right" href="./student.html">+MORE</a>
+						</div>
+					</div>
+				
+				</div>
+				<!--老师展示-->
+				<div class="container t-container border-style" id="index-teacher-div">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-10 container-title-div1">园丁风采</div>
+						<div class="col-lg-1 container-title-div2">
+							<a class="pull-right" href="./teacher.html">+MORE</a>
+						</div>
+					</div>
+				
+				</div>
+				<!--机构展示-->
+				<div class="container int-container border-style">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-10 container-title-div1">机构一览</div>
+						<div class="col-lg-1 container-title-div2">
+							<a class="pull-right" href="./institution.html">+MORE</a>
+						</div>
+					</div>
+					<div class="hovertreeaction" id="index-institution-div">
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="container border-style">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-12 container-title-div1">证书样本</div>
+					</div>
+					<style>
+						#warp{height:200px;margin:0 auto;position:relative;overflow: hidden;}
+						.cert-img-ul{width:1000%;position: absolute;left:0;top:0;overflow: hidden;}
+					</style>
+				
+					<div class="row  no-gutters " id="warp">
+						<ul class="cert-img-ul">
+							<!--<li><div><img src="./img/cert-img1.jpg"/><div>授权书样本</div></div></li> -->
+							<li style="width:248px;padding:0;"><div style="width:248px;padding:0;"><img onclick="imgZoomIn(this.src);" src="./img/cert-img2.jpg"/><div style="width:248px;">辅导教师证书皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img21.jpg"/><div>辅导教师证书内芯样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img3.jpg"/><div>证书内芯样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img4.jpg"/><div>专业考官证皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img5.jpg"/><div>证书皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img41.jpg"/><div>专业考官证内芯样本</div></div></li>
+							<li id="cert-img-li"><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img2.jpg"/><div>辅导教师证书皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img21.jpg"/><div>辅导教师证书内芯样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img3.jpg"/><div>证书内芯样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img4.jpg"/><div>专业考官证皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img5.jpg"/><div>证书皮样本</div></div></li>
+							<li><div><img onclick="imgZoomIn(this.src);" src="./img/cert-img41.jpg"/><div>专业考官证内芯样本</div></div></li>
+						</ul>
+				
+						<script>
+							$(function(){
+								var timer;
+								var number = 0;
+				
+								var cont = document.getElementsByClassName('cert-img-ul')[0];
+				
+								//var width = -800;
+								var marginLeft = 40;
+								var w = $("#cert-img-li").css('width');
+								var ww = parseInt(w.substring(0,w.indexOf('px')));
+								var width = (ww+marginLeft)*6;
+								function AutoPlay(){
+									clearTimeout(timer);
+									timer = setInterval(function(){
+										number --;
+										if((number+width) <= 0){
+											number = 0;
+										}
+										$('.cert-img-ul').css('left',number);
+									},30);
+								}
+								AutoPlay();
+				
+								// 鼠标滑入暂停
+								$('.cert-img-ul li').mouseenter(function(){
+									clearTimeout(timer);
+								}).mouseleave(function(){
+									AutoPlay();
+								})
+							})
+						</script>
+					</div>
+				</div>
+				<div class="container border-style">
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-12 container-title-div1">中心链接</div>
+					</div>
+					<div class="row  no-gutters">
+						<p class="friend-link">
+							<a style="padding-left:4px" href="http://www.tcsrzzx.cn/index.html">全国中心</a>
+							<a href="http://www.tcshbrzzx.com/">河北省中心</a>
+							<a href="http://www.ahxszs.com/">安徽省中心</a>
+							<!-- <a href="http://www.tcsrzzxfj.com/">福建省中心</a>
+							<a href="http://www.xxfqjx.com/">山东省中心</a>
+							<a href="http://www.snycsx.com/index/main.htm">陕西省中心</a>
+							<a href="http://www.zhsncy.com/">黑龙江中心</a> -->
+						</p>
+					</div>
+					<div class="row  no-gutters container-title">
+						<div class="col-lg-12 container-title-div1">友情链接</div>
+					</div>
+					<div>
+						<p class="friend-link row  no-gutters">
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding-left:4px" href="http://www.pcsoc.cn">中国大众文化学会</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.ccmusic.edu.cn/">中国音乐学院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.chntheatre.edu.cn">中央戏剧学院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.caa.edu.cn">中国美术学院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.cnoddt.com">中国歌剧舞剧院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.bda.edu.cn">北京舞蹈学院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.bfa.edu.cn">北京电影学院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.cntc.org.cn">中国儿童艺术剧院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.ballet.org.cn">中央芭蕾舞团</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding-left:4px" href="http://www.gscaa.cn">中国艺术研究院</a>
+								<a class="col-lg-2 col-md-3 col-sm-4 col-xs-6" href="http://www.huaxiayanyi.com">华夏演艺网</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer></footer>
+</div>
+<div class="modal fade text-center" id="imgZoomInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="display: inline-block; width:70%;height:50%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+			</div>
+			<div class="modal-body">
+				<img src="" id="pigImg" style="width: 100%;height:100%;"/>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- /.modal -->
+	<script type="text/javascript">
+        //点击查看原图哎
+        function imgZoomIn(src){
+            $("#pigImg").attr('src',src);
+            $("#imgZoomInModal").modal("show");
+        }
+	</script>
+</body>
+</html>

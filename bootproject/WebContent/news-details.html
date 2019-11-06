@@ -1,0 +1,104 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新闻动态-全国艺术特长生测评认证湖北省中心</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/news.css">
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<script src="js/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fmain.js"></script>
+<script src="js/header&footer.js"></script>
+<script>
+	$(function(){
+	    var id = GetQueryString("id");
+	    if(id!=null && id!='undefined' && id!=''){
+			$.ajax({
+				type : 'POST',
+				url :'http://48y3pn.natappfree.cc/jsp/newss/findNewsById.action',
+				data : {
+				    'id' : id
+				},
+				dataType : 'json',
+				success : function(data) {
+				    if (data.code === 200) {
+						var list = data.rows;
+						$("title").html(list.title+"-新闻动态-全国艺术特长生测评认证湖北省中心")
+						$("#news-context").html(list.context);
+					}
+				},
+				error:function() {
+				    //layer.msg("获取菜单失败");
+				    $("#news-context").html("抱歉，没有获取到相关新闻！");
+				}
+		   });
+	    }
+	    
+	})
+</script>
+</head>
+
+<body>
+	<div id="div1">
+		<a href=""> <img src="img/expert_07.jpg"></a> <a href=""> <img
+			src="img/expert_09.jpg"></a> <a href=""> <img
+			src="img/expert_11.jpg"></a>
+	</div>
+	<header></header>
+	<div id="myCarousel" class="carousel slide"
+		style="background: url(img/expert_01.jpg)">
+		<!-- 轮播（Carousel）指标 -->
+
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<center></center>
+				<!-- <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">-->
+			</div>
+
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+
+		</a> <a class="carousel-control right" href="#myCarousel"
+			data-slide="next"> </a>
+	</div>
+
+	<!--新闻公告-->
+	<div class="art3">
+		您当前的位置:<a href="./index.html"> 网站首页</a>><a href="./news.html"> 新闻公告</a>>详情
+	</div>
+	<div class="container" id="news-context" style="width:95%;">
+		
+	</div>
+
+
+	<footer></footer>
+	<script type="text/javascript">
+	$(window).on('load', function() {
+	    $(".mynav_a").click(function() {
+		var arr = document.getElementsByClassName("mynav_a");
+		for (var i = 0; i < arr.length; i++) {
+		    var tmp = arr[i].getAttribute("data-toggle");
+		    if (tmp !== null && tmp !== 'undefined' && tmp != this) {
+			$(arr[i]).next().collapse('hide');
+		    }
+		}
+	    });
+	    $(window).scroll(function() {
+		var height = $("#mytop").offset().top + $("#mytop").height();
+		if (height >= $("#myCarousel").height()) {
+		    $("#mytop").css("background-color", "rgba(0,0,0,0.5)");
+		} else {
+		    $("#mytop").css("background-color", "rgba(0,0,0,0)")
+		}
+	    });
+	});
+    </script>
+</body>
+</html>
